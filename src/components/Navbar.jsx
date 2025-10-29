@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -13,7 +13,7 @@ export default function Navbar() {
     }
   });
 
-  // ✅ Listen for manual localStorage changes (like login/logout in same tab)
+
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
     if (storedUser) {
@@ -21,15 +21,15 @@ export default function Navbar() {
     } else {
       setUser(null);
     }
-  }, [location]); // runs every time the route changes
+  }, [location.pathname]); 
 
-  // ✅ Sync across tabs (for multi-tab consistency)
+
   useEffect(() => {
     const onStorage = (e) => {
       if (e.key === "loggedInUser") {
-        try {
+        if (e.newValue) {
           setUser(JSON.parse(e.newValue));
-        } catch {
+        } else {
           setUser(null);
         }
       }

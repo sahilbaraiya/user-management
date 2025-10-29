@@ -19,7 +19,7 @@ export default function Login() {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
       navigate("/account");
     } else {
-      toast.warning("Invalid credentials")
+      toast.warning("Invalid credentials");
     }
   };
 
