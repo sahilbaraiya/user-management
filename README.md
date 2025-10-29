@@ -1,16 +1,57 @@
-# React + Vite
+# Account Management App (React v16+)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive **React application** that allows users to **create, log in, view, and manage their account details** with a clean, dark-themed UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- **User Registration:** Create a new account with name, email and password.  
+- **Login System:** Secure login with password visibility toggle.  
+- **Account Management:** View and edit account details such as name and password.  
+- **Real-time UI Updates:** Instantly reflects profile changes without page reload.  
+- **Toast Notifications:** Integrated with React Toastify for smooth user feedback.  
+- **Dark Theme UI:** Clean and modern design with responsive layout for all devices.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React (v16+), Tailwind CSS  
+- **State Management:** React Hooks (`useState`, `useEffect`)  
+- **Notifications:** React Toastify  
+- **Icons:** React Icons  
+- **Styling:** Responsive design with Tailwind CSS  
+
+---
+
+
+---
+
+## ⚙️ Installation & Setup
+
+
+
+
+
+To run the application locally, follow these steps:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/sahilbaraiya/user-management.git
+
+   cd user-management
+
+2. **Install the dependencies**:
+   ```bash
+   npm install
+
+3. **Start the development server**:
+   ```bash
+    npm run dev
+
+4. **Open the application**:
+    ```bash
+    The application will open in your default browser.
+
+

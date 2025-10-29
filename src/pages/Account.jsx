@@ -10,24 +10,37 @@ export default function Account() {
   const [showPassword, setShowPassword] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSave = () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const updatedUsers = users.map((u) => (u.email === user.email ? user : u));
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-    setIsModalOpen(false);
-    toast.success("Account updated successfully! 🎉");
+  const [originalEmail, setOriginalEmail] = useState(loggedInUser?.email || "");
+
+  const openEdit = () => {
+    setOriginalEmail(user.email || "");
+    setIsModalOpen(true);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("loggedInUser");
-    navigate("/login");
+  const handleSave = () => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    let index = users.findIndex((u) => u.email === originalEmail);
+    if (index === -1 && loggedInUser?.email) {
+      index = users.findIndex((u) => u.email === loggedInUser.email);
+    }
+    if (index === -1) {
+      users.push(user);
+    } else {
+      users[index] = user;
+    }
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    setIsModalOpen(false);
+    setUser(user);
+    toast.success("Account updated successfully! 🎉");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
       <div className="bg-gray-900/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl w-full max-w-sm sm:max-w-md border border-gray-700 text-center">
-        <h2 className="text-3xl font-bold mb-6 text-white">Account Information</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white">
+          Account Information
+        </h2>
 
         <div className="space-y-4 text-left">
           <div>
@@ -48,18 +61,11 @@ export default function Account() {
           </div>
 
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={openEdit}
             className="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg flex justify-center items-center gap-2"
           >
             <FiEdit2 /> Edit Profile
           </button>
-
-          {/* <button
-            onClick={handleLogout}
-            className="w-full bg-red-600 hover:bg-red-700 transition-all duration-200 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg"
-          >
-            Logout
-          </button> */}
         </div>
       </div>
 
@@ -67,7 +73,9 @@ export default function Account() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm z-50">
           <div className="bg-gray-900 p-6 rounded-2xl shadow-lg w-11/12 max-w-md border border-gray-700">
-            <h3 className="text-2xl font-bold mb-4 text-center">Edit Profile</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">
+              Edit Profile
+            </h3>
 
             <div className="space-y-4">
               <input
@@ -81,15 +89,17 @@ export default function Account() {
               <input
                 type="email"
                 value={user.email || ""}
-                disabled
-                className="w-full p-3 rounded-lg bg-gray-800 text-gray-400 border border-gray-700 cursor-not-allowed"
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700"
               />
 
               <div className="flex items-center w-full bg-gray-800 rounded-lg border border-gray-700 overflow-hidden focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                 <input
                   type={showPassword ? "text" : "password"}
                   value={user.password || ""}
-                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                   className="w-full p-3 bg-transparent text-white focus:outline-none placeholder-gray-400"
                   placeholder="Password"
                 />
