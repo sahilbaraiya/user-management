@@ -4,7 +4,29 @@ A simple and responsive **React application** that allows users to **create, log
 
 ---
 
-## 🚀 Features
+## 🌐 Live Demo & Portfolio
+
+🔹 **Live App:** [https://useraccountmanagement.netlify.app/](https://useraccountmanagement.netlify.app/)  
+🔹 **My Portfolio:** [https://sahilbaraiya.netlify.app/](https://sahilbaraiya.netlify.app/)
+
+
+---
+
+## 📸 Screenshots
+
+###  Login Page
+![Login Page](./public/screenshots/login.png)
+
+###  Signup Page
+![Signup Page](./public/screenshots/signup.png)
+
+### 👤 Account Page
+![Account Page](./public/screenshots/account.png)
+
+###  Edit Profile Modal
+![Edit Modal](./public/screenshots/edit.png)
+
+##  Features
 
 - **User Registration:** Create a new account with name, email and password.  
 - **Login System:** Secure login with password visibility toggle.  
